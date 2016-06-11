@@ -1,10 +1,10 @@
 # JEE Project - eCommerce
-####### Update: 6/11/2016
+####### Update: 6/11/2016 - live demo not open now
 
 ###IDE
 		Spring Tool Suite (Eclipse)
 
-###Dependencies
+###Main Dependencies
 		Spring Boot
 		Spring Security
 		Spring Web Flow
@@ -14,8 +14,23 @@
 		Hibernate
 		AngularJS
 		Bootstrap
-		JSP view layer
+		JSTL
 		MySQL-connector
+
+###Finished Function
+		* Login,Logout,Register
+		* User confirm and Password reset by Email
+		* Product search, filter, sorting, classify
+		* Product details, Product Reviews(User comments)
+		* Shipping Cart System
+		* Admin manage products/Home slider/Product Category/User
+
+###Further Function
+		* Improve "My Account", footer information, contact page
+		* Coupon System, Points System
+		* Payment System (+Billing Address)
+		* Views history
+		* Recommendation System - Hadoop
 
 ###Roles
 		* ROLE_UNAUTH - user registered but not yet confirm email
@@ -36,11 +51,6 @@
 		/admin/ca/m s (?id=) (d?id=) - category management
 		/admin/hs/m s (?id=) (d?id=) - home slider management
 		/admin/cu/m (d?id=) (e?id=) (ds?id=) - customer management, remove, enable, disable
-##### Login,Logout,Register Links
-		/login - login page
-		/logout - redirect to login page
-		/register - register page
-		/register {user} - POST - add new user (default: 'ROLE_UNAUTH', enabled)
 ##### Home page Links
 		/ - home page
 		/version - history version information
@@ -54,12 +64,21 @@
 ##### Customer Page Links
 		/customer/cart - get customer cartId, redirect to cart page
 		/customer/account - customer account page
+		/customer/account/rsac	- reSend active code
 ##### Shopping cart Links
 		/rest - restful API
 		/rest/cart - cart API (GET: return cart object)
 		/rest/cart/{productId}?q= - POST - (quantity), add cartItem
 		/rest/cart/{cartItemId}?q= - PUT - (quantity required) update cartItem
 		/rest/cart/{cartItemId} - Delete - delete cartItem
+##### Other Links
+		/login - login page
+		/logout - redirect to login page
+		/register - register page
+		/register {user} - POST - add new user (default: 'ROLE_UNAUTH', enabled)
+		/rp/{codeStr} - GET - reset password page
+		/fp - GET - find password page
+		/rg/{codeStr} - GET - active account
 
 ###Function lists
 ##### Login/Register
@@ -90,11 +109,8 @@
 ###BUGS
 		* CartItem Update Button can't handle the number of quantity over 100
 		* The controller in cart page can't synchronized update with header cart Controller 
-		* The function of product Tags not finished, billing not finished.
 		* Need to logout and login again to change the user authority.
+
+###Live Demo
+		http://spring.us-east-1.elasticbeanstalk.com/
 		
-###Further Function
-		* Coupon System
-		* Payment System (+Billing Address)
-		* Recently Views
-		* Recommendation System - Hadoop
