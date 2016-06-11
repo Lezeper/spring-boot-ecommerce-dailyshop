@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+    <var name="order" class="com.imlewis.model.CustomerOrder" />
+    <var name="cart" class="com.imlewis.model.Cart" />
+    <var name="shippingAddress" class="com.imlewis.model.ShippingAddress" />
+    <var name="shippingAddresses" class="com.imlewis.model.ShippingAddress" />
+    <var name="customerOrderShippingAddress" class="com.imlewis.model.CustomerOrderShippingAddress" />
+
+    <action-state id="addCartToOrder">
+        <evaluate expression="cartServiceImpl.validate(externalContext.globalSessionMap.cartId_)" result="cart" />
+        <transition to="InvalidCartWarning" on-exception="java.io.IOException" />
+        <transition to="findAllshippingAddress" />
+    </action-state>
+
+    <action-state id="findAllshippingAddress">
+        <evaluate expression="customerAddressServiceImpl.getAllShippingAddressByCustomerId(externalContext.globalSessionMap.customerId_)" result="shippingAddresses" />
+        <transition to="collectCustomerInfo" />
+    </action-state>
+
+    <view-state id="collectCustomerInfo" view="collectCustomerInfo.jsp" model="customerOrderShippingAddress">
+        <transition on="customerInfoCollected" to="orderConfirmation" />
+        <transition on="goToAddNewAddress" to="addNewAddress" />
+    </view-state>
+    
+    
+    <view-state id="addNewAddress" view="addNewAddress.jsp" model="shippingAddress">
+        <transition on="newAddressAdded" to="addNewAddressService" history="discard" />
+        <transition on="backToCustomerInfo" validate="false" to="collectCustomerInfo"/>
+    </view-state>
+    
+    <action-state id="addNewAddressService">
+        <evaluate expression="customerAddressServiceImpl.addShippingAddressObject(externalContext.globalSessionMap.customerId_, shippingAddress)" />
+        <transition to="findAllshippingAddress" />
+    </action-state>
+
+    <view-state id="orderConfirmation" view="orderConfirmation.jsp">
+        <transition on="orderConfirmed" to="createCustomerOrder" history="discard"/>
+        <transition on="backToCollectCustomerInfo" to="collectCustomerInfo" history="discard"/>
+    </view-state>
+
+    <action-state id="createCustomerOrder">
+        <evaluate expression="customerOrderServiceImpl.addOrderDumpCart(customerOrderShippingAddress, order, cart)" />
+        <transition to="thankCustomer" />
+    </action-state>
+
+    <view-state id="thankCustomer">
+        <transition to="endState" history="discard"/>
+    </view-state>
+
+    <end-state id="endState" />
+
+    <view-state id="InvalidCartWarning">
+        <transition to="endState" />
+    </view-state>
+
+    <end-state id="cancelCheckout" view="checkoutCancelled.jsp" />
+
+    <global-transitions>
+        <transition on="cancel" to="cancelCheckout" />
+    </global-transitions>
+</flow>

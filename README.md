@@ -1,5 +1,5 @@
 # JEE Project - eCommerce
-####### Update: 6/11/2016 - live demo not open now
+####### Update: 6/11/2016
 
 ###IDE
 		Spring Tool Suite (Eclipse)
@@ -26,9 +26,9 @@
 		* Admin manage products/Home slider/Product Category/User
 
 ###Further Function
+		* Payment System (+Billing Address), improve Checkout Page
 		* Improve "My Account", footer information, contact page
 		* Coupon System, Points System
-		* Payment System (+Billing Address)
 		* Views history
 		* Recommendation System - Hadoop
 
@@ -112,5 +112,5 @@
 		* Need to logout and login again to change the user authority.
 
 ###Live Demo
-		http://spring.us-east-1.elasticbeanstalk.com/
+		http://dailyshop.us-east-1.elasticbeanstalk.com
 		
