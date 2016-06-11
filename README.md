@@ -1,5 +1,5 @@
 # JEE Project - eCommerce
-####### Update: 6/9/2016
+####### Update: 6/11/2016
 
 ###IDE
 		Spring Tool Suite (Eclipse)
@@ -22,10 +22,13 @@
 		* ROLE_USER - user already confirm email
 		* ROLE_ADMIN - full authority to controller the whole web
 
+###Authority
+		* /admin/** - [ROLE_ADMIN] required
+		* /checkout - [ROLE_USER] required
+		* /customer/** - [ROLE_UNAUTH] or [ROLE_USER] required
+
 ###Link
 ##### Admin Page Links
-		/admin/** - admin login required
-		
 		/admin/pd/m - product management page
 		/admin/pd/s (?id=) - save product, (create or update)
 		/admin/pd/d?id=	- delete product
@@ -49,7 +52,6 @@
 		/pd/p?id - specific item page (id required)
 		/pd/p?id {productComment} - POST - add product comment - [ROLE_USER] required
 ##### Customer Page Links
-		/customer/** - user login required
 		/customer/cart - get customer cartId, redirect to cart page
 		/customer/account - customer account page
 ##### Shopping cart Links
@@ -58,9 +60,6 @@
 		/rest/cart/{productId}?q= - POST - (quantity), add cartItem
 		/rest/cart/{cartItemId}?q= - PUT - (quantity required) update cartItem
 		/rest/cart/{cartItemId} - Delete - delete cartItem
-##### CheckOut
-		/checkout - [ROLE_USER] required
-		
 
 ###Function lists
 ##### Login/Register
@@ -91,8 +90,8 @@
 ###BUGS
 		* CartItem Update Button can't handle the number of quantity over 100
 		* The controller in cart page can't synchronized update with header cart Controller 
-		* The function of product Tags not finished
-		* Billing address separate with shipping address
+		* The function of product Tags not finished, billing not finished.
+		* Need to logout and login again to change the user authority.
 		
 ###Further Function
 		* Coupon System
