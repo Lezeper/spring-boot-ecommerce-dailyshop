@@ -1,5 +1,4 @@
 # JEE Project - eCommerce
-####### Update: 6/11/2016
 
 ###IDE
 		Spring Tool Suite (Eclipse)
@@ -16,10 +15,14 @@
 		Bootstrap
 		JSTL
 		MySQL-connector
-
+		
 ###Finished Function
-		* Login,Logout,Register
-		* User confirm and Password reset by Email
+		* Login/Register validate
+		* Login/register page(POST) forbidden when already login
+		* Password Encoder Bcrypt
+		* Auto login after registering and reset password
+		* Confirm Email address (Through link with Active code)
+		* Retrieve password (Through link with Reset Password code)
 		* Product search, filter, sorting, classify
 		* Product details, Product Reviews(User comments)
 		* Shipping Cart System
@@ -31,6 +34,9 @@
 		* Coupon System, Points System
 		* Views history
 		* Recommendation System - Hadoop
+
+###DB Structure
+		![alt tag](http://imlewis.com/sql.jpg)
 
 ###Roles
 		* ROLE_UNAUTH - user registered but not yet confirm email
@@ -80,31 +86,8 @@
 		/fp - GET - find password page
 		/rg/{codeStr} - GET - active account
 
-###Function lists
-##### Login/Register
-		* Login/Register validate
-		* Login/register page(POST) forbidden when already login
-		* Password Encoder Bcrypt
-		* Auto login after registering and reset password
-		* Confirm Email address (Through link with Active code)
-		* Retrieve password (Through link with Reset Password code)
-##### Home Page
-		* Home slider
-##### Product Page
-		* Product filter by name, mainCategory, subCategory, tag, Price(Custom), Date
-		* Product sort by product price	(BackEnd Side)
-		* The number of products shows	(FrontEnd Side)
-##### Project Details Page
-		* Product reviews section, user post reviews.
-		* Related Product section
-		* Quantity: disable keyboard input
-##### Admin Page
-		* CRUD, Validate: Product,Category,HomeSlider
-		* Disable/Enable user, delete user. 
-##### Shopping Cart
-		* CRUD
-##### Order
-		* Spring WebFlow
+###CheckOut WebFlow
+		![alt tag](http://imlewis.com/checkoutflow.jpg)
 
 ###BUGS
 		* CartItem Update Button can't handle the number of quantity over 100
