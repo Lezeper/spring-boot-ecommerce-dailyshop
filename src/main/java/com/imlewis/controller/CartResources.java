@@ -59,39 +59,41 @@ public class CartResources {
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void saveItem(@RequestParam (value = "q", required = false) String quantity,
                         @PathVariable(value = "productId") Long productId, @AuthenticationPrincipal User activeUser){
+    	if(activeUser != null){
+    		if (quantity == null){throw new IllegalArgumentException("Quantity = null");}
 
-        if (quantity == null){throw new IllegalArgumentException("Quantity = null");}
+            int q = Integer.parseInt(quantity);
+            
+        	Customer customer = customerRepository.findByEmail(activeUser.getUsername());
+            Cart cart = customer.getCart();
+            Product product = productRepository.findOne(productId);
+            List<CartItem> cartItems = cart.getCartItems();
+            
+            // The code below is magic! Do not touch!
+            for(int i = 0; i<cartItems.size(); i++){
+                if (product.getProductId()==cartItems.get(i).getProduct().getProductId()){
+                    CartItem cartItem = cartItems.get(i);
+                    if(cartItem.getQuantity()+q <= product.getUnitInStock()) {
+                        cartItem.setQuantity(cartItem.getQuantity() + q);
+                    }else {
+                        cartItem.setQuantity(product.getUnitInStock());
+                        throw new IllegalArgumentException("Not so much quantity in sotck.");
+                    }
+                    cartItem.setTotalPriceDouble(product.getProductPrice()*cartItem.getQuantity());
+                    cartItemRepository.save(cartItem);
 
-        int q = Integer.parseInt(quantity);
-
-        Customer customer = customerRepository.findByEmail(activeUser.getUsername());
-        Cart cart = customer.getCart();
-        Product product = productRepository.findOne(productId);
-        List<CartItem> cartItems = cart.getCartItems();
-        
-        // The code below is magic! Do not touch!
-        for(int i = 0; i<cartItems.size(); i++){
-            if (product.getProductId()==cartItems.get(i).getProduct().getProductId()){
-                CartItem cartItem = cartItems.get(i);
-                if(cartItem.getQuantity()+q <= product.getUnitInStock()) {
-                    cartItem.setQuantity(cartItem.getQuantity() + q);
-                }else {
-                    cartItem.setQuantity(product.getUnitInStock());
-                    throw new IllegalArgumentException("Not so much quantity in sotck.");
+                    return;
                 }
-                cartItem.setTotalPriceDouble(product.getProductPrice()*cartItem.getQuantity());
-                cartItemRepository.save(cartItem);
-
-                return;
             }
-        }
-        
-        CartItem cartItem = new CartItem();
-        cartItem.setProduct(product);
-        cartItem.setQuantity(q);
-        cartItem.setTotalPriceDouble(product.getProductPrice()*cartItem.getQuantity());
-        cartItem.setCart(cart);
-        cartItemRepository.save(cartItem);
+            
+            CartItem cartItem = new CartItem();
+            cartItem.setProduct(product);
+            cartItem.setQuantity(q);
+            cartItem.setTotalPriceDouble(product.getProductPrice()*cartItem.getQuantity());
+            cartItem.setCart(cart);
+            cartItemRepository.save(cartItem);
+            
+    	}
     }
 
     @RequestMapping(value = "/{cartItemId}", method = RequestMethod.DELETE)
