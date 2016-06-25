@@ -93,7 +93,3 @@
 		* CartItem Update Button can't handle the number of quantity over 100
 		* The controller in cart page can't synchronized update with header cart Controller 
 		* Need to logout and login again to change the user authority.
-
-###Live Demo
-		http://dailyshop.us-east-1.elasticbeanstalk.com
-		
