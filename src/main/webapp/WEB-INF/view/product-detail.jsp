@@ -58,7 +58,7 @@
                                                min="1" max="${product.unitInStock}" value="1">
                                         <p class="aa-prod-category">
                                             Category:
-                                            <a href="/pd/s?mc=${product.productCategory.mainCategoryName}?sc=${product.productCategory.subCategoryName}" >
+                                            <a href="/pd/s?mc=${product.productCategory.mainCategoryName}&sc=${product.productCategory.subCategoryName}" >
                                             ${product.productCategory.mainCategoryName} - ${product.productCategory.subCategoryName}
                                         </a>
                                         </p>

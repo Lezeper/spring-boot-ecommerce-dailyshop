@@ -36,11 +36,7 @@
                     <td>${product.productDescription}</td>
                     <td>${product.productSummary}</td>
                     <td>${product.productPrice}</td>
-                    <td>
-                    	<c:forEach items="${product.productTags}" var="productTag">
-                    		${productTag} |
-                    	</c:forEach>
-                    </td>
+                    <td>${product.productTagsW}</td>
                     <td>${product.unitInStock}</td>
                     <td>${product.productDate}</td>
                     <td>${fn:substringBefore(product.productViews/2, '.')}</td>

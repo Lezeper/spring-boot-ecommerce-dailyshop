@@ -1,6 +1,19 @@
 $("#quantity").keypress(function (evt) {
     evt.preventDefault();
 });
+//
+//function testMe(csrf){
+//	var url = "/test"+"?"+csrf;
+//	$.ajax({
+//		"url" : url,
+//		"type":"post",
+//		"dataType":"json",
+//		"success":function(){
+//			alert("Good")
+//		}
+//	});
+//
+//}
 
 function click_selected_quantity(el) {
     var productInfo = $("#product-info-" + $(el).attr("productId"));

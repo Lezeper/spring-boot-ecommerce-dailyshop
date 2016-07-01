@@ -67,6 +67,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
     	return super.authenticationManagerBean();
     }
     
+    @Bean(name="testBean")
+    public String testBean(){
+    	return "1993";
+    }
+    
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

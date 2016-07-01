@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
@@ -35,9 +36,14 @@ public class MainController{
 	@Autowired
 	private CartRepository cartRepository;
 	
-	@RequestMapping("/test")
+	@Autowired
+	private ApplicationContext appContext;
+	
+	@RequestMapping(value = "/test", method = RequestMethod.POST)
+	@ResponseBody
 	public String test(HttpServletRequest request){
-		return "checkout";
+//		return (String)appContext.getBean("testBean");
+		return "OK";
 		
 	}
 	/*		

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.imlewis.model.Product;
+import com.imlewis.model.ProductTag;
+import com.imlewis.repository.ProductTagRepository;
 import com.imlewis.service.CategoryService;
 import com.imlewis.service.ProductService;
 
@@ -35,6 +38,9 @@ public class AdminProductController {
 
     @Autowired
     private CategoryService categoryService;
+    
+    @Autowired
+    private ProductTagRepository productTagRepository;
 
     /*		saveProduct.jsp
      * 	modelAttribute: categoryList(List<Category>), product(Product), title(String)
@@ -77,7 +83,21 @@ public class AdminProductController {
         	}
             return "admin/saveProduct";
         }
-
+        
+        // product tags
+        if(product.getProductTagsW() != null && !product.getProductTagsW().isEmpty()){
+        	List<ProductTag> productTagList = new ArrayList<ProductTag>();
+        	for(String tag : product.getProductTagsW().split(";")){
+        		ProductTag ptag = new ProductTag();
+        		ptag.setProduct(product);
+        		ptag.setTagContents(tag);
+        		productTagRepository.save(ptag);
+        		productTagList.add(ptag);
+        	}
+        	product.setProductTags(productTagList);
+        }
+        
+        // product image
         MultipartFile productImage = product.getProductImage();
         String rootDirectory = new File("").getAbsolutePath();
         

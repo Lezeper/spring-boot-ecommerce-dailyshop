@@ -1,6 +1,6 @@
 <%@include file="/WEB-INF/view/template/header.jsp"%>
-
 <!-- Start slider -->
+<!-- <button onclick="testMe('${_csrf.parameterName}=${_csrf.token}')">Click Me</button> -->
 <section id="aa-slider">
     <div class="aa-slider-area">
         <div id="sequence" class="seq">

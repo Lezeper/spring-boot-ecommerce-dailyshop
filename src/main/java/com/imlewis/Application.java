@@ -10,6 +10,7 @@ import org.springframework.cloud.aws.jdbc.config.annotation.EnableRdsInstance;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
+
 public class Application extends SpringBootServletInitializer{
 	
 	@Override

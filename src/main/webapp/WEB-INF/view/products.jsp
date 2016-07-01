@@ -125,7 +125,7 @@
 
                     <!-- single sidebar -->
                     <div class="aa-sidebar-widget">
-                        <h3>More Filter</h3>
+                        <h3>Tags</h3>
                         <div class="tag-cloud">
                             <c:forEach items="${tagList}" var="tag">
                                 <a href="<my:replaceParam name='t' value='${tag}' />">${tag}</a>
