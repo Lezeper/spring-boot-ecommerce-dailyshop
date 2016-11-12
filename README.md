@@ -36,7 +36,7 @@
 		* Recommendation System - Hadoop
 
 ###DB Structure
-![alt tag](http://imlewis.com/sql.jpg)
+![alt tag](http://imlewis.com/pic/sql.jpg)
 
 ###Roles
 		* ROLE_UNAUTH - user registered but not yet confirm email
@@ -87,7 +87,7 @@
 		/rg/{codeStr} - GET - active account
 
 ###CheckOut WebFlow
-![alt tag](http://imlewis.com/checkoutflow.jpg)
+![alt tag](http://imlewis.com/pic/checkoutflow.jpg)
 
 ###BUGS
 		* CartItem Update Button can't handle the number of quantity over 100
