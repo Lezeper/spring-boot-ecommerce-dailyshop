@@ -1,9 +1,9 @@
 # JEE Project - eCommerce
 
-###IDE
+### IDE
 		Spring Tool Suite (Eclipse)
 
-###Main Dependencies
+### Main Dependencies
 		Spring Boot
 		Spring Security
 		Spring Web Flow
@@ -16,7 +16,7 @@
 		JSTL
 		MySQL-connector
 		
-###Finished Function
+### Finished Function
 		* Login/Register validate
 		* Login/register page(POST) forbidden when already login
 		* Password Encoder Bcrypt
@@ -28,27 +28,24 @@
 		* Shipping Cart System
 		* Admin manage products/Home slider/Product Category/User
 
-###Further Function
+### Further Function
 		* Payment System (+Billing Address), improve Checkout Page
 		* Improve "My Account", footer information, contact page
 		* Coupon System, Points System
 		* Views history
 		* Recommendation System - Hadoop
 
-###DB Structure
-![alt tag](http://imlewis.com/pic/sql.jpg)
-
-###Roles
+### Roles
 		* ROLE_UNAUTH - user registered but not yet confirm email
 		* ROLE_USER - user already confirm email
 		* ROLE_ADMIN - full authority to controller the whole web
 
-###Authority
+### Authority
 		* /admin/** - [ROLE_ADMIN] required
 		* /checkout - [ROLE_USER] required
 		* /customer/** - [ROLE_UNAUTH] or [ROLE_USER] required
 
-###Link
+### Link
 ##### Admin Page Links
 		/admin/pd/m - product management page
 		/admin/pd/s (?id=) - save product, (create or update)
@@ -86,10 +83,7 @@
 		/fp - GET - find password page
 		/rg/{codeStr} - GET - active account
 
-###CheckOut WebFlow
-![alt tag](http://imlewis.com/pic/checkoutflow.jpg)
-
-###BUGS
+### BUGS
 		* CartItem Update Button can't handle the number of quantity over 100
 		* The controller in cart page can't synchronized update with header cart Controller 
 		* Need to logout and login again to change the user authority.
